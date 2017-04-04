@@ -3,7 +3,6 @@
 import paho.mqtt.client as mqtt
 import json
 import requests
-import datetime
 from random import randint
 import time
 

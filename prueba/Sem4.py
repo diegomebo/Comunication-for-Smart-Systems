@@ -10,7 +10,7 @@ def on_connect(client, userdata, flags, rc):
 
     # Subscribing in on_connect() means that if we lose the connection and
     # reconnect then subscriptions will be renewed.
-    client.subscribe("/1234/Dev23944TL1/cmd")
+    client.subscribe("/1234/Dev23944TL4/cmd")
 
 
 # The callback for when a PUBLISH message is received from the server.
@@ -18,9 +18,9 @@ def on_message(client, userdata, msg):
     print(msg.topic + " " + str(msg.payload))
     mss=json.loads(msg.payload)
     if mss["Light"] == "0":
-        mqttc.publish("/1234/Dev23944TL1/cmdexe", json.dumps({"Light": "Red"}))
+        mqttc.publish("/1234/Dev23944TL4/cmdexe", json.dumps({"Light": "Red"}))
     if mss["Light"] == "1":
-        mqttc.publish("/1234/Dev23944TL1/cmdexe", json.dumps({"Light": "Green"}))
+        mqttc.publish("/1234/Dev23944TL4/cmdexe", json.dumps({"Light": "Green"}))
 
 
 client = mqtt.Client()

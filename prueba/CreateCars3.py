@@ -28,7 +28,5 @@ while 1:
         numcoches=0
     if r.json()=='Red':
         numcoches=numcoches+randint(0,6)
-    else:
-        print "error"
 
     mqttc.publish("/1234/Dev23944TL3/attrs", json.dumps({"Nc":str(numcoches)}))
