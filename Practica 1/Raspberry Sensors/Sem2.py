@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# this program will create a node and change the trafic light
 
 import paho.mqtt.client as mqtt
 import json
@@ -10,7 +11,8 @@ def on_connect(client, userdata, flags, rc):
 
     # Subscribing in on_connect() means that if we lose the connection and
     # reconnect then subscriptions will be renewed.
-    client.subscribe("/1234/Dev23944TL3/cmd")
+    # subscribe only to the command
+    client.subscribe("/1234/Dev23944TL2/cmd")
 
 
 # The callback for when a PUBLISH message is received from the server.
@@ -18,9 +20,11 @@ def on_message(client, userdata, msg):
     print(msg.topic + " " + str(msg.payload))
     mss=json.loads(msg.payload)
     if mss["Light"] == "0":
-        mqttc.publish("/1234/Dev23944TL3/cmdexe", json.dumps({"Light": "Red"}))
+        mqttc.publish("/1234/Dev23944TL2/cmdexe", json.dumps({"Light": "Red"}))
+        # here the actual actuator code
     if mss["Light"] == "1":
-        mqttc.publish("/1234/Dev23944TL3/cmdexe", json.dumps({"Light": "Green"}))
+        mqttc.publish("/1234/Dev23944TL2/cmdexe", json.dumps({"Light": "Green"}))
+        # here the actual actuator code
 
 
 client = mqtt.Client()

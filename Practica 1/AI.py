@@ -1,6 +1,13 @@
+#!/usr/bin/env python
+# This program is the IA for the crosses
+# It use NGSI protocol
+
+
 import requests
 import json
 import time
+
+# variables for the directions and headers and payloads
 
 UrlTL1Dir='http://130.206.112.29:1026/v2/entities/TL1/attrs/Direction/value'
 UrlTL2Dir='http://130.206.112.29:1026/v2/entities/TL2/attrs/Direction/value'
@@ -34,8 +41,11 @@ payloadRed={
     "type": "bin"
 }
 
+
+#
 Dir=[0,0,0,0]
 #inicializacion
+print ('inicializacion')
 r = requests.get(UrlTL1Dir,headers=headerTLDir)
 if r.json()=='N' or r.json()=='S':
     Dir[0]=1
@@ -43,7 +53,6 @@ if r.json()=='N' or r.json()=='S':
 else:
     Dir[0]=2
     p = requests.put(UrlTL1L, headers=headerTLL, json=(payloadRed))
-print p.json()
 r = requests.get(UrlTL2Dir,headers=headerTLDir)
 if r.json()=='N' or r.json()=='S':
     Dir[1]=1
@@ -51,7 +60,6 @@ if r.json()=='N' or r.json()=='S':
 else:
     Dir[1]=2
     p = requests.put(UrlTL2L, headers=headerTLL, json=(payloadRed))
-print p.json()
 r = requests.get(UrlTL3Dir,headers=headerTLDir)
 if r.json()=='N' or r.json()=='S':
     Dir[2]=1
@@ -59,7 +67,6 @@ if r.json()=='N' or r.json()=='S':
 else:
     Dir[2]=2
     p = requests.put(UrlTL3L, headers=headerTLL, json=(payloadRed))
-print p.json()
 r = requests.get(UrlTL4Dir,headers=headerTLDir)
 if r.json()=='N' or r.json()=='S':
     Dir[3]=1
@@ -67,8 +74,9 @@ if r.json()=='N' or r.json()=='S':
 else:
     Dir[3]=2
     p = requests.put(UrlTL4L, headers=headerTLL, json=(payloadRed))
-print p.json()
 
+# main Programe
+print ('main')
 start_time = time.time()
 NumCar=[0,0,0,0]
 Cycles=0

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# This programm create all the entities for this practice.
 
 import requests
 import json

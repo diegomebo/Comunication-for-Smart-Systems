@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# this program simulate the sensor that counts the number of cars and transmit it via mqtt
+# Every 6 seconds new cars are genareted randomly
 
 import paho.mqtt.client as mqtt
 import json
@@ -26,7 +28,9 @@ while 1:
     start_time = time.time()
     if r.json()== 'Green':
         numcoches=0
+        print numcoches
     if r.json()=='Red':
         numcoches=numcoches+randint(0,6)
+        print numcoches
 
     mqttc.publish("/1234/Dev23944TL3/attrs", json.dumps({"Nc":str(numcoches)}))
