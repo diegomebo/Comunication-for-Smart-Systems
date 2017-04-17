@@ -27,10 +27,10 @@ while 1:
     start_time = time.time()
     if r.json()== 'Green':
         numcoches=0
-        print numcoches
+        print (numcoches)
     if r.json()=='Red':
         numcoches=numcoches+randint(0,6)
-        print numcoches
+        print (numcoches)
 
 
 
