@@ -9,8 +9,7 @@ import datetime
 from random import randint
 import time
 
-headerTL = {'Fiware-Service': 'icai23944',
-            'Fiware-ServicePath': '/environment/Cross1'
+headerTL = {'Fiware-Service': 'icai23944'
             }
 urlTL = 'http://130.206.112.29:1026/v2/entities/TL4/attrs/Light_info/value'
 start_time = time.time()
@@ -32,5 +31,4 @@ while 1:
     if r.json()=='Red':
         numcoches=numcoches+randint(0,6)
         print (numcoches)
-
     mqttc.publish("/1234/Dev23944TL4/attrs", json.dumps({"Nc":str(numcoches)}))

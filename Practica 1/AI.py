@@ -24,8 +24,7 @@ UrlTL2Num='http://130.206.112.29:1026/v2/entities/TL2/attrs/NumCars/value'
 UrlTL3Num='http://130.206.112.29:1026/v2/entities/TL3/attrs/NumCars/value'
 UrlTL4Num='http://130.206.112.29:1026/v2/entities/TL4/attrs/NumCars/value'
 
-headerTLDir = {'Fiware-Service': 'icai23944',
-            'Fiware-ServicePath': '/environment/Cross1'
+headerTLDir = {'Fiware-Service': 'icai23944'
             }
 headerTLL={'Fiware-Service': 'icai23944',
             'Fiware-ServicePath': '/environment/Cross1',
@@ -83,7 +82,7 @@ Cycles=0
 Temp1=30
 Temp2=30
 while 1:
-    if Cycles%2==0:
+    if Cycles % 2 == 0:
         while (time.time() - start_time) < Temp1:
             1
     else:
@@ -136,17 +135,17 @@ while 1:
     Cycles = Cycles + 1
     print (Temp1)
     print (Temp2)
-    if Cycles==4:
+    if Cycles>=4:
         NumCarDir1=(Dir[0]==1)*NumCar[0]+(Dir[1]==1)*NumCar[1]+(Dir[2]==1)*NumCar[2]+(Dir[3]==1)*NumCar[3]
         NumCarDir2 = (Dir[0] == 2) * NumCar[0] + (Dir[1] == 2) * NumCar[1] + (Dir[2] ==2)*NumCar[2]+(Dir[3] == 2)*NumCar[3]
         NumCarDir1=NumCarDir1
         NumCarDir2=NumCarDir2
         print (NumCarDir1)
         print (NumCarDir2)
-        if NumCarDir1>NumCarDir2 and Temp2>=24:
+        if NumCarDir1>NumCarDir2 and Temp2>=2:
             Temp1=Temp1+2
             Temp2=Temp2-2
-        if NumCarDir2>NumCarDir1 and Temp1>=24:
+        if NumCarDir2>NumCarDir1 and Temp1>=2:
             Temp1=Temp1-2
             Temp2=Temp2+2
         NumCar=[0,0,0,0]
