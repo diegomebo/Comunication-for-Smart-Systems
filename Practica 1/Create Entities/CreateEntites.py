@@ -115,9 +115,9 @@ payloadTL4 = {
     ]
 }
 r= requests.post(urlTL, headers=headerTL, json=(payloadTL1))
-#r= requests.post(urlTL, headers=headerTL, json=(payloadTL2))
-#r= requests.post(urlTL, headers=headerTL, json=(payloadTL3))
-#r= requests.post(urlTL, headers=headerTL, json=(payloadTL4))
+r= requests.post(urlTL, headers=headerTL, json=(payloadTL2))
+r= requests.post(urlTL, headers=headerTL, json=(payloadTL3))
+r= requests.post(urlTL, headers=headerTL, json=(payloadTL4))
 try:
     print r.status_code
     print json.dumps(r.json(), indent=4)
