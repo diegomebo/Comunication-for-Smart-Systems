@@ -14,7 +14,7 @@ payloadCross1 = {"id": "Cross1",
                  "type": "Cross",
                  "Location": {
                      "type": "geo:point",
-                     "value": "40.41889 , -3.69144",
+                     "value": "40.4307 , -3.7163",
                      "metadata":{
                         "StreetNames":{
                         "type":"string",

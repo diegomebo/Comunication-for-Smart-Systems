@@ -90,13 +90,21 @@ while 1:
             1
     start_time = time.time()
     r=requests.get(UrlTL1Num,headers=headerTLDir)
-    NumCar[0]=NumCar[0]+int(r.text[1:-1])
+    c1=int(r.text[1:-1])
+    NumCar[0]=NumCar[0]+c1
+    print ('Semaforo 1 = '+str(c1))
     r = requests.get(UrlTL2Num, headers=headerTLDir)
-    NumCar[1] =NumCar[1]+int(r.text[1:-1])
+    c2=int(r.text[1:-1])
+    NumCar[1] =NumCar[1]+c2
+    print ('Semaforo 2 = '+str(c2))
     r = requests.get(UrlTL3Num, headers=headerTLDir)
-    NumCar[2] =NumCar[2]+int(r.text[1:-1])
+    c3=int(r.text[1:-1])
+    NumCar[2] =NumCar[2]+c3
+    print ('Semaforo 3 = '+str(c3))
     r = requests.get(UrlTL4Num, headers=headerTLDir)
-    NumCar[3] =NumCar[3]+int(r.text[1:-1])
+    c4=int(r.text[1:-1])
+    NumCar[3] =NumCar[3]+c4
+    print ('Semaforo 4 = '+str(c4))
     if Cycles%2==0:
         if Dir[0]== 1:
             p = requests.put(UrlTL1L, headers=headerTLL, json=(payloadRed))
@@ -131,17 +139,18 @@ while 1:
             p = requests.put(UrlTL4L, headers=headerTLL, json=(payloadRed))
         else:
             p = requests.put(UrlTL4L, headers=headerTLL, json=(payloadGreen))
-    print (NumCar)
     Cycles = Cycles + 1
-    print (Temp1)
-    print (Temp2)
+    print ("Duracion Dir 1 = "+str(Temp1))
+    print ("Duracion Dir 2 = "+str(Temp2))
+    print ('---------------------------')
     if Cycles>=4:
+        print('Actualizando Tiempos...')
         NumCarDir1=(Dir[0]==1)*NumCar[0]+(Dir[1]==1)*NumCar[1]+(Dir[2]==1)*NumCar[2]+(Dir[3]==1)*NumCar[3]
         NumCarDir2 = (Dir[0] == 2) * NumCar[0] + (Dir[1] == 2) * NumCar[1] + (Dir[2] ==2)*NumCar[2]+(Dir[3] == 2)*NumCar[3]
         NumCarDir1=NumCarDir1
         NumCarDir2=NumCarDir2
-        print (NumCarDir1)
-        print (NumCarDir2)
+        print ('Coches totales Dir 1 en estas ultimas 4 iter ='+ str(NumCarDir1))
+        print ('Coches totales Dir 2 en estas ultimas 4 iter ='+ str(NumCarDir2))
         if NumCarDir1>NumCarDir2 and Temp2>=2:
             Temp1=Temp1+2
             Temp2=Temp2-2
@@ -150,3 +159,4 @@ while 1:
             Temp2=Temp2+2
         NumCar=[0,0,0,0]
         Cycles=0
+        print ('---------------------------')
